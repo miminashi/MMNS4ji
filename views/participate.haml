@@ -1,0 +1,10 @@
+- if flash[:error]
+  %div.error
+    %p= 'Error: ' + flash[:error]
+%form{:method => 'post', :action => '/participant/create'}
+  %b Name:
+  %br
+  %input{:name => 'name', :type => 'text'}
+  %br
+  %br
+  %input{:type => 'submit', :value => 'sign up'}

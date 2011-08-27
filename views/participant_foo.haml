@@ -1,0 +1,18 @@
+%h2 You
+
+%b Username:
+%p= @participant.name
+
+%b Description:
+%p= @participant.description
+
+%b Latitude:
+%p= @participant.latitude ? @participant.latitude : 'unknown'
+
+%b Longitude:
+%p= @participant.longitude ? @participant.longitude : 'unknown'
+
+%b Now participating:
+%p= @participant.now_participating ? @participant.now_participating : 'none'
+
+%a{:href => '/participant/' + @participant.id.to_s + '/edit'} edit

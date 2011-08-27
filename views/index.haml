@@ -1,0 +1,16 @@
+- if @username
+  %p== Welcome, #{@username}.
+  %ul
+    %li
+      %a{:href => '/me'} My Page
+    %li
+      %a{:href => '/'} New Game
+    %li
+      %a{:href => '/logout'} Logout
+- else
+  %ul
+    %li
+      %a{:href => '/participate'} Sign Up
+    %li
+      %a{:href => '/login'} Login
+

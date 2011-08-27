@@ -1,0 +1,25 @@
+%form{:action => '/participant/' + @participant.id.to_s + '/update', :method => 'post'}
+  %b Username:
+  %p= @participant.name
+  
+  %b Description:
+  %br
+  %textarea{:name => 'description'}= @participant.description
+  %br
+  %br
+  
+  %b Latitude:
+  %p= @participant.latitude ? @participant.latitude : 'unknown'
+  %br
+  
+  %b Longitude:
+  %p= @participant.longitude ? @participant.longitude : 'unknown'
+  %br
+  
+  %b Now participating:
+  %p= @participant.now_participating ? @participant.now_participating : 'none'
+  %br
+
+  %input{:type => 'submit', :value => 'update'}
+  
+%a{:href => '/participant/' + @participant.id.to_s} calcel

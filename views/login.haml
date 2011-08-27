@@ -1,0 +1,14 @@
+%h2 Login
+- if flash[:error]
+  %div.error
+    %p= flash[:error]
+- if @username
+  %p already logged in
+- else
+  %form{:action => '/login', :method => 'post'}
+    %b Username:
+    %br
+    %input{:type => 'name', :name => 'username'}
+    %br
+    %br
+    %input{:type => 'submit', :value => 'login'}

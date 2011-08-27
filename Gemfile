@@ -1,0 +1,22 @@
+#source :rubygems
+source "http://rubygems.org"
+#source :rubyforge
+#source "http://gems.rubyforge.org"
+#source :gemcutter
+#source "http://gemcutter.org"
+gem 'sinatra'
+#gem 'json'
+gem 'haml'
+gem 'data_mapper'
+gem 'dm-sqlite-adapter'
+#gem 'dm-core'
+#gem 'dm-aggregates'
+#gem 'dm-constraints'
+#gem 'dm-migrations'
+#gem 'dm-transactions'
+#gem 'dm-serializer'
+#gem 'dm-timestamps'
+#gem 'dm-validations'
+#gem 'dm-types'
+gem 'rake'
+
