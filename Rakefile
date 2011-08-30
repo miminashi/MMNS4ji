@@ -55,16 +55,22 @@ namespace :workers do
       end
     end
 
-    threads.each { |thread| thread.join }
+    threads.each {|thread| thread.join }
   end
 
   task :stop do
+    threads = []
+
     Dir.entries(APP_ROOT + '/tmp').each do |entry|
-      if entry =~ /^resque_/
-        pid = File.open(APP_ROOT + '/tmp/' + entry, 'r').read
-        system "kill -QUIT #{pid}"
+      threads << Thread.new do
+        if entry =~ /^resque_/
+          pid = File.open(APP_ROOT + '/tmp/' + entry, 'r').read
+          system "kill -QUIT #{pid}"
+        end
       end
     end
+
+    threads.each {|thread| thread.join}
   end
 end
 
