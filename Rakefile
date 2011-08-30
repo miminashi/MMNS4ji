@@ -11,6 +11,12 @@ require 'lib/jobs'
 
 APP_ROOT = File.dirname(__FILE__)
 
+# for resque:workers
+ENV['COUNT'] = WORKER_QUEUES.to_s
+ENV['VVERBOSE'] = '1' if WORKER_VERBOSE
+ENV['QUEUE'] = 'hentaijks'
+ENV['PIDFILE'] =  APP_ROOT + '/tmp/resque.pid'
+
 if ENV['RACK_ENV'] == 'production'
   DataMapper.setup(:default, ENV['DATABASE_URL'])
 else
@@ -29,11 +35,6 @@ namespace :db do
 end
 
 namespace :jobs do
-  ENV['COUNT'] = WORKER_QUEUES.to_s
-  ENV['VVERBOSE'] = '1' if WORKER_VERBOSE
-  ENV['QUEUE'] = 'hentaijks'
-  ENV['PIDFILE'] =  APP_ROOT + '/tmp/resque.pid'
-
   task :enqueue do
     users = User.all
     users.each do |user|
