@@ -3,4 +3,5 @@ require 'bundler/setup'
 
 require 'app.rb'
 
-MMNS4ji.run!
+run MMNS4ji.new
+

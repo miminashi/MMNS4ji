@@ -1,0 +1,12 @@
+dir = File.dirname(__FILE__)
+ENV['DATABASE_URL'] = 'sqlite3:db/production.db'
+user 'miminashi'
+#group 'miminashi'
+worker_processes 2
+working_directory dir
+listen 8001
+timeout 30
+pid dir + "/tmp/unicorn.pid"
+#stderr_path "log/stderr.log"
+#stdout_path "log/stdout.log"
+
