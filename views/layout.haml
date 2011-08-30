@@ -1,7 +1,16 @@
+!!!
 %html
   %head
-    %title oni-gokko
+    %title 変態女子高専生緊縛カレープレイ
+    %link{:rel => 'stylesheet', :type => 'text/css', :href => '/css/layout.css'}
   %body
-    %a{:href => '/'}
-      %h1 Onigokker
-    = yield
+    .wrap
+      %h1
+        %a{:href => '/'} 変態女子高専生緊縛カレープレイ
+      - if flash[:notice]
+        .notice
+          %p= flash[:notice]
+      - if flash[:error]
+        .error
+          %p= flash[:error]
+      = yield
