@@ -15,7 +15,7 @@ APP_ROOT = File.dirname(__FILE__)
 ENV['COUNT'] = WORKER_QUEUES.to_s
 ENV['VVERBOSE'] = '1' if WORKER_VERBOSE
 ENV['QUEUE'] = 'hentaijks'
-ENV['PIDFILE'] =  APP_ROOT + '/tmp/resque.pid'
+#ENV['PIDFILE'] =  APP_ROOT + '/tmp/resque.pid'
 
 if ENV['RACK_ENV'] == 'production'
   DataMapper.setup(:default, ENV['DATABASE_URL'])
@@ -39,6 +39,31 @@ namespace :jobs do
     users = User.all
     users.each do |user|
       Resque.enqueue(TweetJob, user.access_token, user.access_token_secret)
+    end
+  end
+end
+
+namespace :workers do
+  task :start do
+    threads = []
+
+    WORKER_QUEUES.times do |n|
+      threads << Thread.new do
+        pidfilepath = "#{APP_ROOT}/tmp/resque_#{n.to_s}.pid"
+        ENV['PIDFILE'] = pidfilepath 
+        system "rake resque:work"
+      end
+    end
+
+    threads.each { |thread| thread.join }
+  end
+
+  task :stop do
+    Dir.entries(APP_ROOT + '/tmp').each do |entry|
+      if entry =~ /^resque_/
+        pid = File.open(APP_ROOT + '/tmp/' + entry, 'r').read
+        system "kill -QUIT #{pid}"
+      end
     end
   end
 end
