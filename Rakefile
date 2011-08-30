@@ -5,6 +5,7 @@ require 'dm-core'
 require 'dm-migrations'
 require 'resque/tasks'
 
+require 'setting'
 require 'lib/models'
 require 'lib/jobs'
 
@@ -28,8 +29,8 @@ namespace :db do
 end
 
 namespace :jobs do
-  ENV['COUNT'] = '2'
-  ENV['VVERBOSE'] = 'true'
+  ENV['COUNT'] = WORKER_QUEUES.to_s
+  ENV['VVERBOSE'] = '1' if WORKER_VERBOSE
   ENV['QUEUE'] = 'hentaijks'
   ENV['PIDFILE'] =  APP_ROOT + '/tmp/resque.pid'
 
@@ -43,5 +44,5 @@ end
 
 #
 # NOTE
-#   rake task 'resque:worker' to start workers
+#   rake task 'resque:workers' to start workers
 #
