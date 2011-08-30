@@ -8,10 +8,7 @@ require 'resque/tasks'
 require 'lib/models'
 require 'lib/jobs'
 
-# set ENV for resque
-ENV['COUNT'] = '2'
-ENV['VVERBOSE'] = 'true'
-ENV['QUEUE'] = 'hentaijks'
+APP_ROOT = File.dirname(__FILE__)
 
 if ENV['RACK_ENV'] == 'production'
   DataMapper.setup(:default, ENV['DATABASE_URL'])
@@ -31,6 +28,11 @@ namespace :db do
 end
 
 namespace :jobs do
+  ENV['COUNT'] = '2'
+  ENV['VVERBOSE'] = 'true'
+  ENV['QUEUE'] = 'hentaijks'
+  ENV['PIDFILE'] =  APP_ROOT + '/tmp/resque.pid'
+
   task :enqueue do
     users = User.all
     users.each do |user|
