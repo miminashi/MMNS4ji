@@ -14,7 +14,7 @@ APP_ROOT = File.dirname(__FILE__)
 # for resque:workers
 ENV['COUNT'] = WORKER_QUEUES.to_s
 ENV['VVERBOSE'] = '1' if WORKER_VERBOSE
-ENV['QUEUE'] = 'hentaijks'
+ENV['QUEUE'] = 'haruyabirthday'
 #ENV['PIDFILE'] =  APP_ROOT + '/tmp/resque.pid'
 
 if ENV['RACK_ENV'] == 'production'

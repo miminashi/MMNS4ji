@@ -1,3 +1,5 @@
+#coding:utf-8
+
 =begin
 class Hoge
   include DataMapper::Resource

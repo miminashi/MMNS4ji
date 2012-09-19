@@ -1,3 +1,5 @@
+#coding:utf-8
+
 =begin
 require 'rubygems'
 require 'bundler/setup'
@@ -16,7 +18,7 @@ require 'twitter'
 require 'lib/constants'
 
 class TweetJob
-  @queue = :hentaijks
+  @queue = :haruyabirthday
 
   def self.perform(access_token, access_token_secret)
     Twitter.configure do |config|
@@ -28,7 +30,8 @@ class TweetJob
     
     client = Twitter::Client.new
     begin
-      client.update('変態女子高専生緊縛カレープレイ #うにに')
+      #client.update('ハルヤ誕生日かよ・・・')
+      client.update('ハルヤ個展かよ・・・')
       p 'tweet succeeded'
     rescue
       p 'tweet failed'

@@ -1,3 +1,5 @@
+#coding:utf-8
+
 require 'dm-core'
 require 'haml'
 require 'sinatra/base'
@@ -5,8 +7,8 @@ require 'rack-flash'
 require 'oauth'
 require 'twitter'
 
-require 'lib/models'
-require 'lib/constants'
+require File.expand_path('lib/models', File.dirname(__FILE__))
+require File.expand_path('lib/constants', File.dirname(__FILE__))
 
 class MMNS4ji < Sinatra::Base
   configure do
@@ -44,7 +46,7 @@ class MMNS4ji < Sinatra::Base
   
   get '/user/new' do
     consumer = oauth_consumer
-    request_token = consumer.get_request_token(:oauth_callback => 'http://hentaijks.or6.jp/oauth/callback')
+    request_token = consumer.get_request_token(:oauth_callback => 'http://haruyabirthday.or6.jp/oauth/callback')
     session[:request_token] = request_token.token
     session[:request_token_secret] = request_token.secret
   

@@ -14,5 +14,6 @@ gem 'redis-namespace'
 gem 'yajl-ruby'
 gem 'rack'
 gem 'resque'
-gem 'SystemTimer'
+gem 'unicorn'
+#gem 'SystemTimer'
 

@@ -1,7 +1,9 @@
+#coding:utf-8
+
 require 'rubygems'
 require 'bundler/setup'
 
-require 'app.rb'
+require File.expand_path('app.rb', File.dirname(__FILE__))
 
 run MMNS4ji.new
 
